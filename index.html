@@ -92,10 +92,25 @@ const firebaseConfig = {
             const textValue = document.getElementById('textInput').value;
             const numberValue = parseFloat(document.getElementById('numberInput').value);
 
-            if (!isNaN(numberValue)) {
+            /*if (!isNaN(numberValue)) {
                 await db.collection("entries").add({ text: textValue, number: numberValue });
                 fetchData(); // Refresh Data
-            }
+            }*/
+
+            if (!isNaN(numberValue) && textValue.trim() !== "") {
+            try {
+                    await db.collection("entries").add({
+                    text: textValue,
+                    number: numberValue
+                });
+                console.log("Entry added successfully!"); // ✅ Debug log
+                fetchData(); // Refresh Data
+            } catch (error) {
+                console.error("Error adding document: ", error); // ❌ Logs error
+        }
+    } else {
+        console.warn("Invalid input: text or number missing.");
+    }
 
             document.getElementById('textInput').value = "";
             document.getElementById('numberInput').value = "";
