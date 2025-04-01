@@ -1,7 +1,7 @@
-const GITHUB_USERNAME = "your-github-username";  // Replace with your GitHub username
-const REPO_NAME = "donation-data";  // Replace with your repo name
+const GITHUB_USERNAME = "myatpwintphyu2";  // Replace with your GitHub username
+const REPO_NAME = "donationMM_earthquake";  // Replace with your repo name
 const FILE_PATH = "data.json";  // File where data will be stored
-const TOKEN = "your_personal_access_token";  // Replace with your GitHub token (DO NOT expose publicly)
+const TOKEN = "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";  // Replace with your GitHub token (DO NOT expose publicly)
 
 async function getGitHubData() {
     try {
