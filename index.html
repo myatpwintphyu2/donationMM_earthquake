@@ -51,7 +51,10 @@
 
     <ul id="entries"></ul>
 
-    <script>
+    <script type="module">
+        // Import Firebase SDK (using ES Modules)
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         firebase.firestore().collection("test").get()
     .then(() => console.log("✅ Firestore Connected!"))
