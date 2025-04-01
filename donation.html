@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persistent Number Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #total {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        input {
+            margin: 5px;
+            padding: 8px;
+        }
+        button {
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 5px;
+            padding: 5px;
+            background: #f1f1f1;
+            display: inline-block;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="total">Total: 0</div>
+
+    <input type="text" id="textInput" placeholder="Enter text">
+    <input type="number" id="numberInput" placeholder="Enter number">
+    <button onclick="addNumber()">Submit</button>
+
+    <ul id="entries"></ul>
+
+    <script>
+        let entries = JSON.parse(localStorage.getItem('entries')) || [];
+
+        function updateDisplay() {
+            let totalAmount = entries.reduce((sum, entry) => sum + entry.number, 0);
+            document.getElementById('total').innerText = "Total: " + totalAmount;
+
+            let list = document.getElementById('entries');
+            list.innerHTML = "";
+            entries.forEach(entry => {
+                let li = document.createElement('li');
+                li.innerText = `${entry.text}: ${entry.number}`;
+                list.appendChild(li);
+            });
+        }
+
+        function addNumber() {
+            let textValue = document.getElementById('textInput').value;
+            let numberValue = parseFloat(document.getElementById('numberInput').value);
+            
+            if (!isNaN(numberValue)) {
+                entries.push({ text: textValue, number: numberValue });
+                localStorage.setItem('entries', JSON.stringify(entries));
+                updateDisplay();
+            }
+            document.getElementById('textInput').value = "";
+            document.getElementById('numberInput').value = "";
+        }
+
+        updateDisplay(); // Load stored data on page load
+    </script>
+
+</body>
+</html>
