@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earthquake Donation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Earthquake Relief Fund</h1>
+        <p>Your generous contribution helps save lives.</p>
+        
+        <!-- Total Donation Display -->
+        <div class="total">
+            <h2>Total Donations: $<span id="totalAmount">0</span></h2>
+        </div>
+        
+        <!-- Donation Form -->
+        <form id="donationForm">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="amount">Donation Amount ($):</label>
+            <input type="number" id="amount" required min="1">
+
+            <button type="submit">Donate</button>
+        </form>
+        
+        <!-- Table to show Donors -->
+        <h3>Donors</h3>
+        <table id="donorTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Donation Amount ($)</th>
+                </tr>
+            </thead>
+            <tbody id="donorTableBody"></tbody>
+        </table>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
